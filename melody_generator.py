@@ -52,8 +52,6 @@ class MelodyGenerator:
         predictions = torch.log(probabilities) / temperature
         probabilities = torch.exp(predictions) / torch.sum(torch.exp(predictions))
 
-        print(probabilities)
-
         choices = range(len(probabilities))
         index = np.random.choice(choices, p=probabilities.numpy())
 
