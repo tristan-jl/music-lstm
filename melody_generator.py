@@ -9,6 +9,7 @@ from model import LSTM
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
+
 class MelodyGenerator:
     def __init__(self, model_path="model.pt"):
         self.model = LSTM(45, 256, 45)
@@ -59,7 +60,11 @@ class MelodyGenerator:
         return index
 
     def save_melody(
-        self, melody=None, step_duration=0.25, format="midi", file_name=f"output/{int(time())}.mid"
+        self,
+        melody=None,
+        step_duration=0.25,
+        format="midi",
+        file_name=f"output/{int(time())}.mid",
     ):
         if melody is None:
             melody = self.melody

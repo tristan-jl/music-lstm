@@ -20,10 +20,16 @@ input_size = 45
 train_ids, validation_ids = split_train_validation(np.arange(num_sequences))
 partition = {"train": train_ids, "validation": validation_ids}
 
-training_set = MusicDataset(partition["train"], f"{path}/data/all_songs_int.npy", f"{path}/data/dictionary.json")
+training_set = MusicDataset(
+    partition["train"], f"{path}/data/all_songs_int.npy", f"{path}/data/dictionary.json"
+)
 train_loader = DataLoader(training_set, **params)
 
-validation_set = MusicDataset(partition["validation"], f"{path}/data/all_songs_int.npy", f"{path}/data/dictionary.json")
+validation_set = MusicDataset(
+    partition["validation"],
+    f"{path}/data/all_songs_int.npy",
+    f"{path}/data/dictionary.json",
+)
 validation_loader = DataLoader(validation_set, **params)
 
 model = LSTM(training_set.vocabulary_size, 256, 45)
