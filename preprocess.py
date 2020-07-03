@@ -41,7 +41,9 @@ class Preprocessor:
 
     @staticmethod
     def transpose(song: m21.stream.Score) -> m21.stream.Score:
-        key = song.getElementsByClass(m21.stream.Part)[0].getElementsByClass(m21.stream.Measure)[0][4]
+        key = song.getElementsByClass(m21.stream.Part)[0].getElementsByClass(
+            m21.stream.Measure
+        )[0][4]
 
         if not isinstance(key, m21.key.Key):
             key = song.analyze("key")
@@ -80,7 +82,9 @@ class Preprocessor:
             else:
                 print(f"Unknown event: {event}")
 
-            encoded_song.append(np.array([pitch, int(event.duration.quarterLength / self.time_step)]))
+            encoded_song.append(
+                np.array([pitch, int(event.duration.quarterLength / self.time_step)])
+            )
 
         return np.array(encoded_song)
 
@@ -181,7 +185,12 @@ class SequenceGenerator:
             num_sequences = len(self.all_songs_int) - self.sequence_length
 
             for i in tqdm(range(num_sequences)):
-                inputs.append(self.one_hot(self.all_songs_int[i:i + self.sequence_length], self.vocabulary_size))
+                inputs.append(
+                    self.one_hot(
+                        self.all_songs_int[i : i + self.sequence_length],
+                        self.vocabulary_size,
+                    )
+                )
                 targets.append(self.all_songs_int[i + self.sequence_length])
 
         print(f"Number of sequences = {len(inputs)}")

@@ -7,10 +7,7 @@ from torch.utils.data import Dataset
 
 class MusicDataset(Dataset):
     def __init__(
-        self,
-        list_ids: np.array,
-        songs_path: str,
-        dictionary_path: str,
+        self, list_ids: np.array, songs_path: str, dictionary_path: str,
     ):
         self.list_ids = list_ids
 
