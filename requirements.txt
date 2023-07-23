@@ -1,4 +1,4 @@
-future==0.18.2
+future==0.18.3
 music21==5.7.2
 numpy==1.19.0
 Pillow==7.1.2
